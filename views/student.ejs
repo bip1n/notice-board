@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Notice Board</title>
+</head>
+<body>
+  <h1>Student Notice Board</h1>
+
+  <h2>Notices</h2>
+  <% if (notices.length === 0) { %>
+    <p>No notices available.</p>
+  <% } else { %>
+    <ul>
+      <% for (const notice of notices) { %>
+        <li>
+          <h3><%= notice.title %></h3>
+          <p><%= notice.description %></p>
+          <% if (notice.filename.endsWith('.txt')) { %>
+            <a href="/uploads/<%= notice.filename %>">View Text Notice</a>
+          <% } else if (notice.filename.endsWith('.jpg') || notice.filename.endsWith('.jpeg') || notice.filename.endsWith('.png')) { %>
+            <img src="/uploads/<%= notice.filename %>" alt="Notice Image" width="300">
+          <% } else { %>
+            <p>File format not supported.</p>
+          <% } %>
+        </li>
+      <% } %>
+    </ul>
+  <% } %>
+</body>
+</html>

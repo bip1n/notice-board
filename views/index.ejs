@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notice Board</title>
+</head>
+<body>
+  <h1>Notice Board</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Title" required><br><br>
+    <textarea name="description" placeholder="Description" required></textarea><br><br>
+    <input type="file" name="file" required><br><br>
+    <input type="submit" value="Upload">
+  </form>
+
+  <h2>Notices</h2>
+  <% if (notices.length === 0) { %>
+    <p>No notices available.</p>
+  <% } else { %>
+    <ul>
+      <% for (const notice of notices) { %>
+        <li>
+          <h3><%= notice.title %></h3>
+          <p><%= notice.description %></p>
+          <img src="/uploads/<%= notice.filename %>" alt="Notice Image" width="300">
+        </li>
+      <% } %>
+    </ul>
+  <% } %>
+</body>
+</html>
