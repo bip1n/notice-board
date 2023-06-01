@@ -1,10 +1,10 @@
-const express = require('express');
-const multer = require('multer');
-const mysql = require('mysql');
-const path = require('path');
+const express = require('express'); // for handling HTTP requests
+const multer = require('multer'); // for handling file uploads
+const mysql = require('mysql'); // for interacting with MySQL
+const path = require('path'); 
 
 const app = express();
-const port = 3000;
+const port = 3005;
 app.use(express.static('uploads'));
 
 // Set up MySQL connection
@@ -12,7 +12,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'notice-board'
+  database: 'student_mis'
 });
 
 db.connect((err) => {
@@ -70,7 +70,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
   db.query('INSERT INTO notices SET ?', notice, (err, result) => {
     if (err) {
       console.error('Error executing MySQL query: ' + err.stack);
-      return res.sendStatus(500);
+      return res.sendStatus(500); 
     }
     res.redirect('/');
   });
